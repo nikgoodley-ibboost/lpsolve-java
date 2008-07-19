@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sourceforge</groupId>
+	<artifactId>lpsolve</artifactId>
+	<name>lpsolve for java</name>
+	<version>5.5.0.12-SNAPSHOT</version>
+	<description>lpsolve mixed integer linear programming (MILP) solver java binding</description>
+	
+	<scm>
+		<connection>
+			scm:svn:http://lpsolve-java.googlecode.com/svn/trunk/lpsolve-5.5.0.12
+		</connection>
+		<developerConnection>
+			scm:svn:https://lpsolve-java.googlecode.com/svn/trunk/lpsolve-5.5.0.12
+		</developerConnection>
+		<url>http://code.google.com/p/lpsolve-java/</url>
+	</scm>
+
+	<!-- These are temporary. -->
+	<distributionManagement>
+		<repository>
+			<id>gamalocus.com-dev</id>
+			<url>
+				scpexe://dev.cotwl.net/home/cotk/maven2/repository
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>gamalocus.com-snapshot-dev</id>
+			<url>
+				scpexe://dev.cotwl.net/home/cotk/maven2/snapshotRepository
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
