@@ -271,7 +271,8 @@ public class LpSolve {
 	 * Static initializer to load the stub library
 	 */
 	static {
-		System.loadLibrary("lpsolve55j");
+		// Loads maven-nar-plugin versioned library.
+		NarSystem.loadLibrary();
 		init();
 	}
 
