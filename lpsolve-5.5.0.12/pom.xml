@@ -7,7 +7,7 @@
 	<groupId>net.sourceforge</groupId>
 	<artifactId>lpsolvej</artifactId>
 	<name>lpsolve for java</name>
-	<version>5.5.0.12-1</version>
+	<version>5.5.0.12-SNAPSHOT</version>
     <packaging>nar</packaging>
 	<description>lpsolve mixed integer linear programming (MILP) solver java binding</description>
 	
