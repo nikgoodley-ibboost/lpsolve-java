@@ -77,8 +77,6 @@
 					<libraries>
 						<library>
 							<type>jni</type>
-							<narSystemPackage>lpsolve</narSystemPackage>
-							<narSystemDirectory>src/generated/java</narSystemDirectory>
 						</library>
 					</libraries>
 					<!-- JNI lib is bundled, so nothing to compile.. -->
@@ -95,7 +93,7 @@
 						<excludes>
 							<exclude>**/LpSolve.class</exclude>
 						</excludes>
-					</javah>				
+					</javah>
 				</configuration>
 			</plugin>
 			
