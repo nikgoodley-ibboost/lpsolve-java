@@ -7,7 +7,7 @@
 	<groupId>net.sourceforge</groupId>
 	<artifactId>lpsolvej</artifactId>
 	<name>lpsolve for java</name>
-	<version>5.5.0.12-SNAPSHOT</version>
+	<version>5.5.0.12-1</version>
     <packaging>nar</packaging>
 	<description>lpsolve mixed integer linear programming (MILP) solver java binding</description>
 	
@@ -71,13 +71,14 @@
 				<groupId>org.freehep</groupId>
 				<artifactId>freehep-nar-plugin</artifactId>
 				<!-- M2ECLIPSE version of maven is unable to resolve the version -->
-				<version>2.0-alpha-11-20070913.183154-2</version>
+				<version>2.0-alpha-10</version>
 				<extensions>true</extensions>
 				<configuration>
 					<libraries>
 						<library>
 							<type>jni</type>
-							<linkCPP>false</linkCPP>
+							<narSystemPackage>lpsolve</narSystemPackage>
+							<narSystemDirectory>src/generated/java</narSystemDirectory>
 						</library>
 					</libraries>
 					<!-- JNI lib is bundled, so nothing to compile.. -->
@@ -89,9 +90,6 @@
 						-->
 						<sourceDirectory>src/main/java</sourceDirectory>
 					</cpp>
-					<linker>
-						<libs></libs>
-					</linker>
 					<!-- JNI Interface header is bundled, so disable javah. -->
 					<javah>
 						<excludes>
