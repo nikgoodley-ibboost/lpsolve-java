@@ -5,9 +5,10 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sourceforge</groupId>
-	<artifactId>lpsolve</artifactId>
+	<artifactId>lpsolvej</artifactId>
 	<name>lpsolve for java</name>
 	<version>5.5.0.12-SNAPSHOT</version>
+    <packaging>nar</packaging>
 	<description>lpsolve mixed integer linear programming (MILP) solver java binding</description>
 	
 	<scm>
@@ -36,8 +37,70 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>freehep-maven</id>
+			<name>Maven FreeHEP</name>
+			<url>http://java.freehep.org/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+   	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<build>
+		<defaultGoal>integration-test</defaultGoal>
+		
 		<plugins>
+		
+			<!-- We want to run freehep-nar-plugin's integration test instead -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+					
+			<plugin>
+				<groupId>org.freehep</groupId>
+				<artifactId>freehep-nar-plugin</artifactId>
+				<!-- M2ECLIPSE version of maven is unable to resolve the version -->
+				<version>2.0-alpha-11-20070913.183154-2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<libraries>
+						<library>
+							<type>jni</type>
+							<linkCPP>false</linkCPP>
+						</library>
+					</libraries>
+					<!-- JNI lib is bundled, so nothing to compile.. -->
+					<cpp>
+						<!-- 
+						Workaround: Just excluding everything causes the
+						linker to be run. Setting a source directory without
+						c/c++ source files appears to work.
+						-->
+						<sourceDirectory>src/main/java</sourceDirectory>
+					</cpp>
+					<linker>
+						<libs></libs>
+					</linker>
+					<!-- JNI Interface header is bundled, so disable javah. -->
+					<javah>
+						<excludes>
+							<exclude>**/LpSolve.class</exclude>
+						</excludes>
+					</javah>				
+				</configuration>
+			</plugin>
+			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -45,26 +108,6 @@
 					<target>1.5</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
